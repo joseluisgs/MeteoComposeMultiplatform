@@ -13,7 +13,7 @@ private val logger = logging()
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun App() = AppTheme {
-    logger.info { "Iniciando la App" }
+    logger.info { "Iniciando la App: ${Res.string.app_name}" }
     // Inicializamos el navegador con la pantalla principal
     Navigator(HomeScreen)
 }

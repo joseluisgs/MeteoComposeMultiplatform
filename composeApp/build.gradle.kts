@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.compose)
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.libres)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -55,6 +56,10 @@ kotlin {
                 implementation(libs.kotlinx.serialization.json)
                 // Koin
                 implementation(libs.koin.core)
+                // Libres
+                api(libs.libres)
+                // ImageLoader
+                api(libs.composeImageLoader)
                 // Logger
                 api(libs.logger)
             }
@@ -111,6 +116,7 @@ android {
         manifest.srcFile("src/androidMain/AndroidManifest.xml")
         res.srcDirs("src/androidMain/resources")
         resources.srcDirs("src/commonMain/resources")
+        res.srcDir("build/generated/libres/android/resources")
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -133,3 +139,16 @@ compose.desktop {
         }
     }
 }
+
+// Configuración de Libres
+libres {
+    // https://github.com/Skeptick/libres#setup
+    /*
+     generatedClassName = "MainRes" // "Res" by default
+    generateNamedArguments = true // false by default
+    baseLocaleLanguageCode = "ru" // "en" by default
+    camelCaseNamesForAppleFramework = true // false by default
+     */
+}
+tasks.getByPath("desktopProcessResources").dependsOn("libresGenerateResources")
+tasks.getByPath("desktopSourcesJar").dependsOn("libresGenerateResources")

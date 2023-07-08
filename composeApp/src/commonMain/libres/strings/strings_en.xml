@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MeteoCompose</string>
+    <!-- <string name="simple_string">Hello!</string>
+     <string name="string_with_arguments">Hello ${name}!</string>
+     <plurals name="plural_string">
+         <item quantity="one">resource</item>
+         <item quantity="other">resources</item>
+     </plurals>-->
+</resources>

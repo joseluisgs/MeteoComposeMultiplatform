@@ -1,4 +1,5 @@
 rootProject.name = "MeteoCompose"
+// Include the composeApp module
 include(":composeApp")
 
 pluginManagement {
