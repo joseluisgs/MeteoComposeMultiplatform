@@ -13,6 +13,22 @@ Ejemplo de una sencilla aplicación de información meteorológica con Kotlin Mu
 
 Este es un ejemplo de una aplicación de información meteorológica con Kotlin Multiplatform y Compose. Es un ejemplo muy simple pero que muestra como podemos usar Compose en una aplicación multiplataforma. En este caso, la aplicación se compone de un módulo Desktop y otro Android, pero podríamos añadir más módulos para iOS, Web, etc.
 
+### Before running! 
+Check your system with KDoctor
+- install JDK 8 on your machine
+- add local.properties file to the project root and set a path to Android SDK there
+- run ./gradlew podInstall in the project root 
+
+### Android
+To run the application on android device/emulator:  
+ - open project in Android Studio and run imported android run configuration
+
+To build the application bundle:
+ - run `./gradlew :composeApp:assembleDebug`
+ - find `.apk` file in `composeApp/build/outputs/apk/debug/composeApp-debug.apk`
+
+### Desktop
+Run the desktop application: `./gradlew :composeApp:run`
 
 ## Autor
 
