@@ -1,28 +1,27 @@
-package dev.joseluisgs.meteocompose.screens.home
+package dev.joseluisgs.meteocompose.screens.info
 
 import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import dev.joseluisgs.meteocompose.screens.info.InfoScreen
 import org.lighthousegames.logging.logging
 
 private val logger = logging()
 
-object HomeScreen : Screen {
+object InfoScreen : Screen {
 
     init {
-        logger.info { "Iniciando la Screen Home" }
+        logger.info { "Iniciando la Screen Info" }
     }
 
     @Composable
     override fun Content() {
-        // Obtenemos el navigator
+        // Recuperamos el navigator
         val navigator = LocalNavigator.currentOrThrow
-        HomeView(
-            goToInfo = {
-                logger.debug { "Navigator: Home -> Info" }
-                navigator.push(InfoScreen)
+        InfoView(
+            goBack = {
+                logger.debug { "Navigator: Info -> Home" }
+                navigator.pop()
             }
         )
     }

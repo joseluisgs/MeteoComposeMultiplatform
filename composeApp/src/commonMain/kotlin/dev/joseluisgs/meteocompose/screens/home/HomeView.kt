@@ -22,7 +22,7 @@ import dev.joseluisgs.meteocompose.utils.openUrl
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeView() {
+fun HomeView(goToInfo: () -> Unit) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisibility by remember { mutableStateOf(false) }
@@ -30,7 +30,7 @@ fun HomeView() {
 
     // Scaffold, contenido de la pantalla
     Scaffold(
-        topBar = { HomeTopBar() },
+        topBar = { HomeTopBar(goToInfo = goToInfo) },
     ) {
 
         Column(modifier = Modifier.fillMaxSize()) {
@@ -89,13 +89,13 @@ fun HomeView() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeTopBar() {
+fun HomeTopBar(goToInfo: () -> Unit) {
     // TopBar
     TopAppBar(
         title = { Text(text = "MeteoCompose ${getPlatformName()}") },
         actions = {
-            IconButton(onClick = { }) {
-                Icon(imageVector = Icons.Default.Info, contentDescription = "Acerca De")
+            IconButton(onClick = { goToInfo() }) {
+                Icon(imageVector = Icons.Default.Info, contentDescription = "Info")
             }
         },
         // colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
