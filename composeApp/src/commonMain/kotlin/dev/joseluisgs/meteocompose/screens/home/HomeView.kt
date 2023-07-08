@@ -21,7 +21,7 @@ import com.seiko.imageloader.rememberImagePainter
 import dev.joseluisgs.meteocompose.Res
 import dev.joseluisgs.meteocompose.utils.getPlatformName
 import dev.joseluisgs.meteocompose.utils.openUrl
-import org.jetbrains.compose.resources.painterResource
+import io.github.skeptick.libres.compose.painterResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

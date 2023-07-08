@@ -62,6 +62,8 @@ kotlin {
                 api(libs.composeImageLoader)
                 // Logger
                 api(libs.logger)
+                // Icons
+                api(libs.composeIcons.fontAwesome)
             }
         }
 
