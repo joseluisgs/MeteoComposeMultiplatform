@@ -5,19 +5,23 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.coroutineScope
+import dev.joseluisgs.meteocompose.repository.DemoRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.lighthousegames.logging.logging
 
 private val logger = logging()
 
-class HomeViewModel : ScreenModel {
+class HomeViewModel(
+    private val repository: DemoRepository
+) : ScreenModel {
     // Vamos a usar MutableState de Compose
     var state by mutableStateOf(UiState())
         private set
 
     init {
         logger.info { "Init HomeViewModel" }
+        logger.warn { repository.getDemoData() }
         // Lanzamos la carga de datos
         coroutineScope.launch {
             state = state.copy(isLoading = true)

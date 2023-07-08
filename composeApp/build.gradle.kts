@@ -83,6 +83,8 @@ kotlin {
                 implementation(libs.kotlinx.coroutines.android)
                 // Ktor Android
                 implementation(libs.ktor.client.okhttp)
+                // Koin Android
+                implementation(libs.koin.android)
             }
         }
 
