@@ -5,6 +5,7 @@
     <string name="app_author">José Luis González</string>
     <string name="app_author_web">https://joseluisgs.dev</string>
     <string name="app_author_github">https://github.com/joseluisgs</string>
+    <string name="info_screen">Información</string>
     <!-- <string name="simple_string">Hello!</string>
      <string name="string_with_arguments">Hello ${name}!</string>
      <plurals name="plural_string">
