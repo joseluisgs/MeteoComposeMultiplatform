@@ -111,7 +111,7 @@ android {
 // Configuración de Desktop
 compose.desktop {
     application {
-        mainClass = "MainKt"
+        mainClass = "MainDesktopKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)

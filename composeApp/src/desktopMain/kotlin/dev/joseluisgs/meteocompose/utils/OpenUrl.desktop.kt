@@ -1,4 +1,4 @@
-package dev.joseluisgs.meteocompose
+package dev.joseluisgs.meteocompose.utils
 
 import java.awt.Desktop
 import java.net.URI
