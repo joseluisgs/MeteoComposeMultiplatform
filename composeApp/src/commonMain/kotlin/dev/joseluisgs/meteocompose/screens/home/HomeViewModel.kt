@@ -23,15 +23,15 @@ class HomeViewModel(
         logger.info { "Init HomeViewModel" }
         logger.warn { repository.getDemoData() }
         // Lanzamos la carga de datos
-        coroutineScope.launch {
-            state = state.copy(isLoading = true)
-            loadData()
-            state = state.copy(isLoading = false)
-        }
+        loadData()
     }
 
-    private suspend fun loadData() {
-        delay(2000)
+    fun loadData() {
+        coroutineScope.launch {
+            state = state.copy(isLoading = true)
+            delay(2000)
+            state = state.copy(isLoading = false)
+        }
     }
 
     // El estado de la vista

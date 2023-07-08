@@ -17,11 +17,11 @@ import dev.joseluisgs.meteocompose.Res
 import io.github.skeptick.libres.compose.painterResource
 
 @Composable
-fun HomeContent(padding: PaddingValues, isLoading: Boolean) {
+fun HomeContent(isLoading: Boolean, padding: PaddingValues) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier.padding(padding).fillMaxWidth()
+        verticalArrangement = Arrangement.Top,
+        modifier = Modifier.fillMaxWidth().padding(padding)
     ) {
         SearchCity()
         if (isLoading) {
