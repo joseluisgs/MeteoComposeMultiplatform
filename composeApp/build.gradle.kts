@@ -44,11 +44,19 @@ kotlin {
                 implementation(compose.material3)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                implementation(compose.materialIconsExtended)
+                // Voyager Navigator
                 implementation(libs.voyager.navigator)
+                // Coroutines Core
                 implementation(libs.kotlinx.coroutines.core)
+                // Ktor Core
                 implementation(libs.ktor.core)
+                // Serialization
                 implementation(libs.kotlinx.serialization.json)
+                // Koin
                 implementation(libs.koin.core)
+                // Logger
+                api(libs.logger)
             }
         }
 
@@ -64,7 +72,9 @@ kotlin {
                 implementation(libs.androidx.appcompat)
                 implementation(libs.androidx.activityCompose)
                 implementation(libs.compose.uitooling)
+                // Coroutines Android
                 implementation(libs.kotlinx.coroutines.android)
+                // Ktor Android
                 implementation(libs.ktor.client.okhttp)
             }
         }
@@ -74,7 +84,10 @@ kotlin {
             dependencies {
                 implementation(compose.desktop.common)
                 implementation(compose.desktop.currentOs)
+                // Ktor Desktop
                 implementation(libs.ktor.client.okhttp)
+                // Logback para JVM
+                implementation(libs.logback)
             }
         }
 
