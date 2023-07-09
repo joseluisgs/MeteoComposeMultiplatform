@@ -17,7 +17,7 @@ data class WeatherInfo(
     val temperature: Double,
     val feelsLike: Double,
     val chanceOfRain: Double? = null,
-    val humidity: Double? = null,
+    val humidity: Int? = null,
     val wind: Double? = null,
     val precipitation: Double? = null,
     val visibility: Double? = null,

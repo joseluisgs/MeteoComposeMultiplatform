@@ -34,6 +34,9 @@ private fun extractCurrentWeatherFrom(response: WeatherResponse): WeatherInfo {
         iconUrl = "https:" + response.current.condition.icon.replace("64x64", "128x128"),
         temperature = response.current.tempC,
         feelsLike = response.current.feelslikeC,
+        humidity = response.current.humidity,
+        wind = response.current.windKph,
+        precipitation = response.current.precipMm,
     )
 }
 

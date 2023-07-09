@@ -32,7 +32,8 @@ class WeatherRepository(private val weatherRest: WeatherRest) {
                     "&q=$city" +
                     "&days=5" +
                     "&aqi=no" +
-                    "&alerts=no"
+                    "&alerts=no" +
+                    "&lang=es"
         )
         return if (res.status.value in 400..499) {
             Err(WeatherError.NetworkProblem("La ciudad $city no existe en el servicio de clima"))
