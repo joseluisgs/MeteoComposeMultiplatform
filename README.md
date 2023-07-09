@@ -8,26 +8,52 @@ Ejemplo de una sencilla aplicación de información meteorológica con Kotlin Mu
 [![LICENSE](https://img.shields.io/badge/Lisence-CC-%23e64545)](https://joseluisgs.github.io/docs/license/)
 ![imagen](https://repository-images.githubusercontent.com/293498508/1624a845-8807-4b9b-895a-fdbc9ce70678)
 
-
 ## Acerca de
 
-Este es un ejemplo de una aplicación de información meteorológica con Kotlin Multiplatform y Compose. Es un ejemplo muy simple pero que muestra como podemos usar Compose en una aplicación multiplataforma. En este caso, la aplicación se compone de un módulo Desktop y otro Android, pero podríamos añadir más módulos para iOS, Web, etc.
+Este es un ejemplo de una aplicación de información meteorológica con Kotlin Multiplatform y Compose. Es un ejemplo muy
+simple pero que muestra como podemos usar Compose en una aplicación multiplataforma. En este caso, la aplicación se
+compone de un módulo Desktop y otro Android, pero podríamos añadir más módulos para iOS, Web, etc.
 
-### Before running! 
+Entre las cosas que podemos ver en este ejemplo están:
+
+- App de Android y Desktop con código compartido con Kotlin Multiplatform y Compose
+- Material Design 3 con Compose con temas y colores
+- Uso de Voyager para la navegación y gestion de rutas y estados de pantallas
+- Uso de Coroutines para el manejo de asincronía
+- Uso de Koin para la inyección de dependencias
+- Uso de Ktor para la comunicación con la API
+- Uso de Kotlinx Serialization para la serialización de datos
+- Uso de Libres para manejo de recursos multiplataforma
+- Uso de Compose ImageLoader para la carga de imágenes
+- Iconos de Material y Font Awesome
+
+![imagen](./images/01.png)
+
+![imagen](./images/02.png)
+
+![imagen](./images/03.png)
+
+### Before running!
+
 Check your system with KDoctor
+
 - install JDK 8 on your machine
 - add local.properties file to the project root and set a path to Android SDK there
-- run ./gradlew podInstall in the project root 
+- run ./gradlew podInstall in the project root
 
 ### Android
-To run the application on android device/emulator:  
- - open project in Android Studio and run imported android run configuration
+
+To run the application on android device/emulator:
+
+- open project in Android Studio and run imported android run configuration
 
 To build the application bundle:
- - run `./gradlew :composeApp:assembleDebug`
- - find `.apk` file in `composeApp/build/outputs/apk/debug/composeApp-debug.apk`
+
+- run `./gradlew :composeApp:assembleDebug`
+- find `.apk` file in `composeApp/build/outputs/apk/debug/composeApp-debug.apk`
 
 ### Desktop
+
 Run the desktop application: `./gradlew :composeApp:run`
 
 ## Autor

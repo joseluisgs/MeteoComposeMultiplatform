@@ -10,7 +10,6 @@ val appModule = module {
     // single { DemoRepository() }
     // single { HomeViewModel(get()) }
 
-
     singleOf(::WeatherRest)
     singleOf(::WeatherRepository)
     singleOf(::HomeViewModel)
