@@ -11,7 +11,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.seiko.imageloader.rememberImagePainter
 import dev.joseluisgs.meteocompose.Res
@@ -30,7 +29,7 @@ fun HomeContent(state: HomeViewModel.State<WeatherResult, WeatherError>, padding
         when (state) {
             is HomeViewModel.State.Loading -> LoadingDataIndicator()
             is HomeViewModel.State.Content -> println("Success")
-            is HomeViewModel.State.Error -> ErrorMessage()
+            is HomeViewModel.State.Error -> ErrorMessage(error = state.error)
         }
     }
 }
@@ -103,15 +102,22 @@ fun LoadingDataIndicator() {
 }
 
 @Composable
-fun ErrorMessage() {
-    Box(modifier = Modifier.fillMaxSize()) {
+fun ErrorMessage(error: WeatherError) {
+    Column(
+        modifier = Modifier.fillMaxSize()
+            .padding(horizontal = 72.dp, vertical = 72.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
         Text(
             text = "Algo ha ido mal, prueba otra vez otra vez. ¯\\_(ツ)_/¯",
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 72.dp, vertical = 72.dp),
-            textAlign = TextAlign.Center,
             style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.error,
+            modifier = Modifier.padding(bottom = 16.dp)
+        )
+        Text(
+            text = error.message,
+            style = MaterialTheme.typography.titleSmall,
             color = MaterialTheme.colorScheme.error
         )
     }
