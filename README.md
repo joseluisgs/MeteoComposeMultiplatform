@@ -25,6 +25,7 @@ Entre las cosas que podemos ver en este ejemplo están:
 - Uso de Kotlinx Serialization para la serialización de datos
 - Uso de Libres para manejo de recursos multiplataforma
 - Uso de Compose ImageLoader para la carga de imágenes
+- Gestión de estados mediante Railway Oriented Programming (ROP y LCE (Loading, Content, Error))
 - Iconos de Material y Font Awesome
 
 ![imagen](./images/01.png)
