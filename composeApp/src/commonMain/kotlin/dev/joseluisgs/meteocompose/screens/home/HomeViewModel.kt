@@ -5,6 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.coroutineScope
+import dev.joseluisgs.meteocompose.error.WeatherError
+import dev.joseluisgs.meteocompose.models.weather.WeatherResult
 import dev.joseluisgs.meteocompose.repository.WeatherRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -16,7 +18,7 @@ class HomeViewModel(
     private val repository: WeatherRepository
 ) : ScreenModel {
     // Vamos a usar MutableState de Compose
-    var state by mutableStateOf(UiState())
+    var state by mutableStateOf<State<WeatherResult, WeatherError>>(State.Loading)
         private set
 
     init {
@@ -27,14 +29,17 @@ class HomeViewModel(
 
     fun loadData() {
         coroutineScope.launch {
-            state = state.copy(isLoading = true)
+            state = State.Loading
             delay(2000)
-            state = state.copy(isLoading = false)
+            state = State.Error(WeatherError.NetworkError("Error de red"))
         }
     }
 
     // El estado de la vista
-    data class UiState(
-        val isLoading: Boolean = false,
-    )
+    sealed class State<out WeatherResult, out WeatherError> {
+        object Loading : State<Nothing, Nothing>()
+        data class Content<WeatherResult>(val data: WeatherResult) : State<WeatherResult, Nothing>()
+        data class Error(val error: WeatherError) : State<Nothing, WeatherError>()
+    }
+
 }

@@ -26,11 +26,11 @@ fun HomeView(vm: HomeViewModel, goToInfo: () -> Unit) {
             ) {
                 HomeContent(
                     padding = padding,
-                    isLoading = vm.state.isLoading
+                    state = vm.state,
                 )
             }
             // Aquí el snackba
-            if (!vm.state.isLoading) {
+            if (vm.state !is HomeViewModel.State.Loading) {
                 MySnackbar(
                     message = "Datos cargados correctamente",
                     actionLabel = "Recargar",

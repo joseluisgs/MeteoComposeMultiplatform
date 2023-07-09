@@ -11,23 +11,26 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.seiko.imageloader.rememberImagePainter
 import dev.joseluisgs.meteocompose.Res
+import dev.joseluisgs.meteocompose.error.WeatherError
+import dev.joseluisgs.meteocompose.models.weather.WeatherResult
 import io.github.skeptick.libres.compose.painterResource
 
 @Composable
-fun HomeContent(isLoading: Boolean, padding: PaddingValues) {
+fun HomeContent(state: HomeViewModel.State<WeatherResult, WeatherError>, padding: PaddingValues) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top,
         modifier = Modifier.fillMaxWidth().padding(padding)
     ) {
         SearchCity()
-        if (isLoading) {
-            LoadingDataIndicator()
-        } else {
-            Text(text = "Hola Home")
+        when (state) {
+            is HomeViewModel.State.Loading -> LoadingDataIndicator()
+            is HomeViewModel.State.Content -> println("Success")
+            is HomeViewModel.State.Error -> ErrorMessage()
         }
     }
 }
@@ -98,3 +101,19 @@ fun LoadingDataIndicator() {
         )
     }
 }
+
+@Composable
+fun ErrorMessage() {
+    Box(modifier = Modifier.fillMaxSize()) {
+        Text(
+            text = "Algo ha ido mal, prueba otra vez otra vez. ¯\\_(ツ)_/¯",
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 72.dp, vertical = 72.dp),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.error
+        )
+    }
+}
+
