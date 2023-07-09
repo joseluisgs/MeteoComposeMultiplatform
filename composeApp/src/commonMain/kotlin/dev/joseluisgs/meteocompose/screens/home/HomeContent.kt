@@ -15,6 +15,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.seiko.imageloader.rememberImagePainter
+import compose.icons.FontAwesomeIcons
+import compose.icons.fontawesomeicons.Solid
+import compose.icons.fontawesomeicons.solid.*
 import dev.joseluisgs.meteocompose.error.WeatherError
 import dev.joseluisgs.meteocompose.models.weather.WeatherInfo
 import dev.joseluisgs.meteocompose.models.weather.WeatherResult
@@ -121,10 +124,23 @@ private fun CityWeatherInfo(
                 contentDescription = data.currentWeather.condition,
                 modifier = Modifier.defaultMinSize(minWidth = 128.dp, minHeight = 128.dp)
             )
-            Text(
-                text = "Temperatura: ${data.currentWeather.temperature} °C",
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.secondary
+            TextWithIconInfo(
+                text = {
+                    Text(
+                        text = " ${data.currentWeather.temperature} °C",
+                        style = MaterialTheme.typography.titleLarge,
+                        color = MaterialTheme.colorScheme.secondary
+                    )
+                },
+                icon = {
+                    Icon(
+                        imageVector = FontAwesomeIcons.Solid.TemperatureLow,
+                        contentDescription = "Temperatura",
+                        modifier = Modifier.size(20.dp),
+                        tint = MaterialTheme.colorScheme.secondary
+
+                    )
+                },
             )
             Row(
                 modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
@@ -132,21 +148,72 @@ private fun CityWeatherInfo(
                 verticalAlignment = Alignment.CenterVertically
 
             ) {
-                Text(
-                    text = "Sensación: ${data.currentWeather.feelsLike} °C",
-                    style = MaterialTheme.typography.labelSmall
+                // Sensación térmica
+                TextWithIconInfo(
+                    text = {
+                        Text(
+                            text = " ${data.currentWeather.feelsLike} °C",
+                            style = MaterialTheme.typography.labelSmall
+                        )
+                    },
+                    icon = {
+                        Icon(
+                            imageVector = FontAwesomeIcons.Solid.ThermometerHalf,
+                            contentDescription = "Sensación",
+                            modifier = Modifier.size(16.dp)
+                        )
+                    },
                 )
-                Text(
-                    text = "Humedad: ${data.currentWeather.humidity} %",
-                    style = MaterialTheme.typography.labelSmall
+
+                // Humedad
+                TextWithIconInfo(
+                    text = {
+                        Text(
+                            text = " ${data.currentWeather.humidity} %",
+                            style = MaterialTheme.typography.labelSmall
+                        )
+                    },
+                    icon = {
+                        Icon(
+                            imageVector = FontAwesomeIcons.Solid.Water,
+                            contentDescription = "Humedad",
+                            modifier = Modifier.size(16.dp)
+                        )
+                    },
                 )
-                Text(
-                    text = "Viento: ${data.currentWeather.wind} km/h",
-                    style = MaterialTheme.typography.labelSmall
+
+                // Viento
+                TextWithIconInfo(
+                    text = {
+                        Text(
+                            text = " ${data.currentWeather.wind} km/h",
+                            style = MaterialTheme.typography.labelSmall
+                        )
+                    },
+                    icon = {
+                        Icon(
+                            imageVector = FontAwesomeIcons.Solid.Wind,
+                            contentDescription = "Viento",
+                            modifier = Modifier.size(16.dp)
+                        )
+                    },
                 )
-                Text(
-                    text = "Precipitación: ${data.currentWeather.precipitation} mm",
-                    style = MaterialTheme.typography.labelSmall
+
+                // Precipitación
+                TextWithIconInfo(
+                    text = {
+                        Text(
+                            text = " ${data.currentWeather.precipitation} mm",
+                            style = MaterialTheme.typography.labelSmall
+                        )
+                    },
+                    icon = {
+                        Icon(
+                            imageVector = FontAwesomeIcons.Solid.CloudRain,
+                            contentDescription = "Precipitación",
+                            modifier = Modifier.size(16.dp)
+                        )
+                    },
                 )
             }
         }
@@ -163,6 +230,7 @@ private fun CityWeatherPrevision(forecast: List<WeatherInfo>) {
     LazyRow(
         modifier = Modifier.padding(all = 8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
+        userScrollEnabled = true,
     ) {
         items(forecast) { weatherInfo ->
             ForecastWeatherInfo(weatherInfo)
@@ -189,17 +257,54 @@ fun ForecastWeatherInfo(data: WeatherInfo) {
                 contentDescription = data.condition,
                 modifier = Modifier.defaultMinSize(minWidth = 64.dp, minHeight = 64.dp)
             )
-            Text(
-                text = "Temperatura: ${data.temperature} °C",
-                style = MaterialTheme.typography.labelSmall,
+
+            // Temperatura
+            TextWithIconInfo(
+                text = {
+                    Text(
+                        text = " ${data.temperature} °C",
+                        style = MaterialTheme.typography.labelSmall
+                    )
+                },
+                icon = {
+                    Icon(
+                        imageVector = FontAwesomeIcons.Solid.TemperatureLow,
+                        contentDescription = "Sensación",
+                        modifier = Modifier.size(12.dp)
+                    )
+                },
             )
-            Text(
-                text = "Prob: ${data.chanceOfRain} %",
-                style = MaterialTheme.typography.labelSmall,
+
+            // Precipitación
+            TextWithIconInfo(
+                text = {
+                    Text(
+                        text = " ${data.chanceOfRain} %",
+                        style = MaterialTheme.typography.labelSmall
+                    )
+                },
+                icon = {
+                    Icon(
+                        imageVector = FontAwesomeIcons.Solid.CloudRain,
+                        contentDescription = "Precipitación",
+                        modifier = Modifier.size(12.dp)
+                    )
+                },
             )
         }
     }
 }
+
+@Composable
+fun TextWithIconInfo(text: @Composable () -> Unit, icon: @Composable () -> Unit) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        icon()
+        text()
+    }
+}
+
 
 @Composable
 fun LoadingDataIndicator() {

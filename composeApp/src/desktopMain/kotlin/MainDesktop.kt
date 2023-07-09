@@ -20,7 +20,7 @@ fun main() = application {
 
     Window(
         title = "MeteoCompose ${getPlatformName()}",
-        state = rememberWindowState(width = 800.dp, height = 600.dp),
+        state = rememberWindowState(width = 800.dp, height = 700.dp),
         icon = painterResource(Res.image.app_icon),
         onCloseRequest = ::exitApplication,
     ) { App() }
