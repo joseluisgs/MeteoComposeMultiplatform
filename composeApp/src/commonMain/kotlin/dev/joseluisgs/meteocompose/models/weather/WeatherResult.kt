@@ -24,7 +24,7 @@ data class WeatherInfo(
     val uvIndex: Double? = null,
 )
 
-data class WeatherResults(
+data class WeatherResult(
     val location: LocationInfo,
     val currentWeather: WeatherInfo,
     val forecast: List<WeatherInfo>,

@@ -3,12 +3,12 @@ package dev.joseluisgs.meteocompose.mappers
 import dev.joseluisgs.meteocompose.models.weather.*
 
 // Lo hacemos con una función de extensión
-fun WeatherResponse.toResult(): WeatherResults {
+fun WeatherResponse.toResult(): WeatherResult {
     val location = extractCurrentLocationWeatherFrom(this)
     val current = extractCurrentWeatherFrom(this)
     val forecast = extractForecastWeatherFrom(this)
 
-    return WeatherResults(
+    return WeatherResult(
         location = location,
         currentWeather = current,
         forecast = forecast,

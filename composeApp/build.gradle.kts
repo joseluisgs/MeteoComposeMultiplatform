@@ -52,6 +52,8 @@ kotlin {
                 implementation(libs.kotlinx.coroutines.core)
                 // Ktor Core
                 implementation(libs.ktor.core)
+                implementation(libs.ktor.client.serialization)
+                implementation(libs.ktor.serialization.kotlinx.json)
                 // Serialization
                 implementation(libs.kotlinx.serialization.json)
                 // Koin
@@ -64,6 +66,8 @@ kotlin {
                 api(libs.logger)
                 // Icons
                 api(libs.composeIcons.fontAwesome)
+                // Result
+                api(libs.result)
             }
         }
 
