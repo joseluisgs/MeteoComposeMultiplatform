@@ -6,6 +6,7 @@
     <string name="app_author_web">https://joseluisgs.dev</string>
     <string name="app_author_github">https://github.com/joseluisgs</string>
     <string name="info_screen">Información</string>
+    <string name="api_key">3bc3dbd5ea6c4dd6bd9172316230807</string>
     <!-- <string name="simple_string">Hello!</string>
      <string name="string_with_arguments">Hello ${name}!</string>
      <plurals name="plural_string">

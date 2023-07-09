@@ -55,6 +55,7 @@ fun SearchCity() {
         Button(
             onClick = { /* TODO */ },
             shape = MaterialTheme.shapes.small,
+            enabled = searchCity.trim().isNotEmpty(),
         ) {
             Icon(Icons.Outlined.Search, "Buscar")
         }
