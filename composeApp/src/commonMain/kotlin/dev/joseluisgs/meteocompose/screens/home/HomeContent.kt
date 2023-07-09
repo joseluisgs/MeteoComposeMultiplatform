@@ -19,24 +19,29 @@ import dev.joseluisgs.meteocompose.models.weather.WeatherResult
 import io.github.skeptick.libres.compose.painterResource
 
 @Composable
-fun HomeContent(state: HomeViewModel.State<WeatherResult, WeatherError>, padding: PaddingValues) {
+fun HomeContent(
+    state: HomeViewModel.State<WeatherResult, WeatherError>,
+    onClickSearchCity: (String) -> Unit,
+    padding: PaddingValues
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top,
         modifier = Modifier.fillMaxWidth().padding(padding)
     ) {
-        SearchCity()
+        SearchCity(onClickSearchCity = onClickSearchCity)
         when (state) {
             is HomeViewModel.State.Loading -> LoadingDataIndicator()
-            is HomeViewModel.State.Content -> println("Success")
+            is HomeViewModel.State.Content -> ContentInfo(state = state.data)
             is HomeViewModel.State.Error -> ErrorMessage(error = state.error)
+            is HomeViewModel.State.Empty -> {}
         }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchCity() {
+fun SearchCity(onClickSearchCity: (String) -> Unit) {
     var searchCity by remember { mutableStateOf("") }
 
     Row(
@@ -55,13 +60,27 @@ fun SearchCity() {
             leadingIcon = { Icon(Icons.Filled.LocationOn, "Location") },
         )
         Button(
-            onClick = { /* TODO */ },
+            onClick = { onClickSearchCity(searchCity) },
             shape = MaterialTheme.shapes.small,
             enabled = searchCity.trim().isNotEmpty(),
         ) {
             Icon(Icons.Outlined.Search, "Buscar")
         }
     }
+}
+
+@Composable
+fun ContentInfo(state: WeatherResult) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        ImageExampleLocal()
+    }
+
+    println("ContentInfo: $state")
+
 }
 
 
@@ -115,11 +134,11 @@ fun ErrorMessage(error: WeatherError) {
             color = MaterialTheme.colorScheme.error,
             modifier = Modifier.padding(bottom = 16.dp)
         )
-        Text(
-            text = error.message,
-            style = MaterialTheme.typography.titleSmall,
-            color = MaterialTheme.colorScheme.error
-        )
+        /* Text(
+             text = error.message,
+             style = MaterialTheme.typography.titleSmall,
+             color = MaterialTheme.colorScheme.error
+         )*/
     }
 }
 

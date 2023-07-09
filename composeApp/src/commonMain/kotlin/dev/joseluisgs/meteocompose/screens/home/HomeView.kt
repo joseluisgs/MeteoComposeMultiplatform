@@ -2,9 +2,7 @@ package dev.joseluisgs.meteocompose.screens.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import org.lighthousegames.logging.logging
@@ -15,6 +13,7 @@ private val logger = logging()
 @Composable
 fun HomeView(vm: HomeViewModel, goToInfo: () -> Unit) {
     // Scaffold, contenido de la pantalla
+    var lastCity by remember { mutableStateOf("") }
     Scaffold(
         topBar = { HomeTopBar(goToInfo = goToInfo) },
     ) { padding ->
@@ -27,15 +26,20 @@ fun HomeView(vm: HomeViewModel, goToInfo: () -> Unit) {
                 HomeContent(
                     padding = padding,
                     state = vm.state,
+                    onClickSearchCity = {
+                        lastCity = it
+                        vm.loadData(it)
+                    },
                 )
             }
-            // Aquí el snackba
-            if (vm.state !is HomeViewModel.State.Loading) {
+            // Aquí el snackbar respecto al estado de error
+            if (vm.state is HomeViewModel.State.Error) {
+                logger.debug { "Error" }
                 MySnackbar(
-                    message = "Datos cargados correctamente",
+                    message = (vm.state as HomeViewModel.State.Error).error.message,
                     actionLabel = "Recargar",
                     onDismiss = { logger.debug { "Snackbar dismissed" } },
-                    onAction = { vm.loadData() },
+                    onAction = { vm.loadData(lastCity) },
                 )
             }
         }

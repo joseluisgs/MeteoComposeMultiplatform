@@ -36,8 +36,8 @@ data class Current(
     val condition: Condition,
     @SerialName("feelslike_c") val feelslikeC: Double,
     @SerialName("humidity") val humidity: Int,
-    @SerialName("wind_kph") val windKph: Int,
-    @SerialName("precip_mm") val precipMm: Int,
+    @SerialName("wind_kph") val windKph: Double,
+    @SerialName("precip_mm") val precipMm: Double,
     @SerialName("vis_km") val visKm: Double,
     @SerialName("uv") val uv: Double,
 )
