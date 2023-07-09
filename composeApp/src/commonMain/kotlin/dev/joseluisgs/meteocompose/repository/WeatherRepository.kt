@@ -19,7 +19,7 @@ class WeatherRepository(private val weatherRest: WeatherRest) {
     private val apiKey = Res.string.api_key
 
     init {
-        logger.debug { "Init WeatherRepository con $apiKey" }
+        logger.info { "Init WeatherRepository" }
     }
 
     private suspend fun getWeatherForCity(city: String): WeatherResponse {
